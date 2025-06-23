@@ -1,0 +1,14 @@
+networks:
+  api_homsdocs:
+
+services:
+    meilisearch:
+        image: getmeili/meilisearch:v1.10
+        environment:
+            - MEILI_MASTER_KEY=${MEILISEARCH_KEY}
+        working_dir: /www
+        container_name: homsdocs-meilisearch
+        ports:
+            - "homsdocs.istratov.techart.intranet:${MEILISEARCH_LOCAL_PORT}:7700"
+        networks:
+            - api_homsdocs
