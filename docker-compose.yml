@@ -9,6 +9,6 @@ services:
         working_dir: /www
         container_name: homsdocs-meilisearch
         ports:
-            - "homsdocs.istratov.techart.intranet:${MEILISEARCH_LOCAL_PORT}:7700"
+            - "${MEILISEARCH_LOCAL_PORT}:7700"
         networks:
             - api_homsdocs
