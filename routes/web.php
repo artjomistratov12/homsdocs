@@ -1,15 +1,20 @@
 <?php
 use App\Models\Service;
-
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/api', function () {
-    $results = Service::search('Ipsam')->get();
+Route::get('/search', function (Request $request) {
+    $query = $request->input('q');
 
-    dd($results);
+    if (empty($query)) {
+        return response()->json([]);
+    }
+
+    $results = Service::search($query)->get();
+
+    return response()->json($results);
 });
